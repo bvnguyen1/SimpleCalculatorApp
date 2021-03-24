@@ -28,43 +28,30 @@ class MainActivity : AppCompatActivity() {
     private lateinit var equalButton: Button
     var numberStr = "0"
     var operationClicked = false;
+    var equalClicked = false;
     var divide = false;
     var multiply = false;
     var subtract = false;
     var plus = false;
-    var equalClick = false;
     var num1 = -1.8293
     var num2 = -1.234567
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Default
-
+        // Set Default
         initilizeButton()
 
-        // num1 and num2
-
-
-
         resetButton.setOnClickListener { view: View ->
-            var operationClicked = false;
-            numberStr = "0"
-            num1 = -1.8293
-            num2 = -1.234567
-            answerField.text = numberStr
-            divide = false
-            multiply = false
-            subtract = false
-            plus = false
+            resetButtonsToDefault()
             enableAllButtons()
         }
         dotButton.setOnClickListener { view: View ->
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (!numberStr.contains('.'))
                 numberStr = numberStr + "."
@@ -74,6 +61,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "0"
@@ -85,6 +74,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "1"
@@ -96,6 +87,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "2"
@@ -107,6 +100,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "3"
@@ -118,6 +113,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "4"
@@ -129,6 +126,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "5"
@@ -140,6 +139,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "6"
@@ -151,6 +152,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "7"
@@ -162,6 +165,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "8"
@@ -173,6 +178,8 @@ class MainActivity : AppCompatActivity() {
             if (operationClicked) {
                 numberStr = "0"
                 operationClicked = false;
+            }else if (equalClicked){
+                resetButtonsToDefault()
             }
             if (numberStr == "0")
                 numberStr = "9"
@@ -181,6 +188,7 @@ class MainActivity : AppCompatActivity() {
             answerField.text = numberStr
         }
 
+        // Operator event handling
         divideButton.setOnClickListener { view: View ->
             // do the calculation
             equalButtonIsPressed()
@@ -199,7 +207,6 @@ class MainActivity : AppCompatActivity() {
             subtract = false
             plus = false
             operationClicked = true
-
         }
         subtractButton.setOnClickListener { view: View ->
             // do the calculation
@@ -209,32 +216,37 @@ class MainActivity : AppCompatActivity() {
             multiply = false
             subtract = true
             operationClicked = true
-
-
         }
         plusButton.setOnClickListener { view: View ->
-
             equalButtonIsPressed()
             plus = true
             divide = false
             multiply = false
             subtract = false
             operationClicked = true
-
-
-
         }
         equalButton.setOnClickListener { view: View ->
             equalButtonIsPressed()
+            equalClicked = true;
         }
-
-
-
-
     }
+
+
+    fun resetButtonsToDefault() {
+        operationClicked = false;
+        numberStr = "0"
+        num1 = -1.8293
+        num2 = -1.234567
+        answerField.text = numberStr
+        divide = false
+        multiply = false
+        subtract = false
+        plus = false
+        equalClicked = false;
+    }
+
     var answer = 0.0
     fun equalButtonIsPressed(){
-
         if (num1 == -1.8293) {
             num1 = numberStr.toDouble()
             answer = num1
@@ -248,7 +260,6 @@ class MainActivity : AppCompatActivity() {
             answer = num1 - num2
         else if (multiply)
             answer = num1 * num2
-
 
         numberStr = answer.toString()
         if (divide)
@@ -269,7 +280,6 @@ class MainActivity : AppCompatActivity() {
         multiply = false
         subtract = false
         plus = false
-        equalClick = true
         numberStr = "0"
     }
 
